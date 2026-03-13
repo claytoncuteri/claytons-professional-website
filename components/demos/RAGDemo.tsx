@@ -86,7 +86,7 @@ export default function RAGDemo() {
                   ? "bg-accent-blue/20 text-accent-blue"
                   : isPast
                   ? "bg-accent-blue/10 text-accent-blue/60"
-                  : "bg-navy-800 text-muted/50"
+                  : "bg-black/[0.04] text-muted"
               }`}
             >
               <Icon size={12} />
@@ -96,8 +96,8 @@ export default function RAGDemo() {
         })}
       </div>
 
-      {/* Demo viewport */}
-      <div className="bg-navy-950 rounded-xl p-6 min-h-[320px] relative overflow-hidden">
+      {/* Demo viewport - dark terminal style */}
+      <div className="bg-gray-950 rounded-xl p-6 min-h-[320px] relative overflow-hidden text-gray-200">
         <AnimatePresence mode="wait">
           {stage === "idle" && (
             <motion.div
@@ -107,7 +107,7 @@ export default function RAGDemo() {
               exit={{ opacity: 0 }}
               className="flex flex-col items-center justify-center h-[280px] gap-4"
             >
-              <p className="text-muted text-sm">
+              <p className="text-gray-400 text-sm">
                 Click &quot;Run Query&quot; to step through the RAG pipeline
               </p>
               <button
@@ -128,7 +128,7 @@ export default function RAGDemo() {
               exit={{ opacity: 0 }}
               className="space-y-3"
             >
-              <p className="text-xs text-muted mb-4">
+              <p className="text-xs text-gray-400 mb-4">
                 Loading source documents...
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -138,13 +138,13 @@ export default function RAGDemo() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.2 }}
-                    className="bg-navy-800 rounded-lg p-3 border border-card-border"
+                    className="bg-gray-900 rounded-lg p-3 border border-gray-800"
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <FileText size={14} className="text-accent-blue" />
-                      <span className="text-sm font-medium">{doc.title}</span>
+                      <span className="text-sm font-medium text-white">{doc.title}</span>
                     </div>
-                    <p className="text-xs text-muted line-clamp-2">
+                    <p className="text-xs text-gray-400 line-clamp-2">
                       {doc.preview}
                     </p>
                   </motion.div>
@@ -161,7 +161,7 @@ export default function RAGDemo() {
               exit={{ opacity: 0 }}
               className="space-y-3"
             >
-              <p className="text-xs text-muted mb-4">
+              <p className="text-xs text-gray-400 mb-4">
                 Splitting documents into chunks using recursive strategy...
               </p>
               <div className="space-y-4">
@@ -177,9 +177,9 @@ export default function RAGDemo() {
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: di * 0.3 + ci * 0.15 }}
-                          className="bg-navy-800 rounded px-3 py-2 text-xs text-muted border border-card-border max-w-[250px]"
+                          className="bg-gray-900 rounded px-3 py-2 text-xs text-gray-400 border border-gray-800 max-w-[250px]"
                         >
-                          <span className="text-accent-amber text-[10px] mr-1">
+                          <span className="text-accent-blue text-[10px] mr-1">
                             [{di}.{ci}]
                           </span>
                           {chunk.slice(0, 80)}...
@@ -200,7 +200,7 @@ export default function RAGDemo() {
               exit={{ opacity: 0 }}
               className="space-y-3"
             >
-              <p className="text-xs text-muted mb-4">
+              <p className="text-xs text-gray-400 mb-4">
                 Generating vector embeddings for each chunk...
               </p>
               <div className="space-y-2">
@@ -210,9 +210,9 @@ export default function RAGDemo() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.3 }}
-                    className="flex items-center gap-3 bg-navy-800 rounded-lg p-3 border border-card-border"
+                    className="flex items-center gap-3 bg-gray-900 rounded-lg p-3 border border-gray-800"
                   >
-                    <div className="flex-1 text-xs text-muted truncate">
+                    <div className="flex-1 text-xs text-gray-400 truncate">
                       {chunk.slice(0, 60)}...
                     </div>
                     <motion.div
@@ -243,7 +243,7 @@ export default function RAGDemo() {
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-accent-blue/10 border border-accent-blue/30 rounded-lg p-3 text-center"
               >
-                <p className="text-xs text-muted mb-1">Query</p>
+                <p className="text-xs text-gray-400 mb-1">Query</p>
                 <p className="text-sm font-medium text-accent-blue">
                   &quot;{RAG_SAMPLE_QUERY}&quot;
                 </p>
@@ -260,20 +260,20 @@ export default function RAGDemo() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: isRelevant ? 1 : 0.3 }}
                       transition={{ delay: i * 0.2 }}
-                      className={`flex items-center gap-3 bg-navy-800 rounded-lg p-3 border ${
+                      className={`flex items-center gap-3 bg-gray-900 rounded-lg p-3 border ${
                         isRelevant
                           ? "border-accent-blue/30"
-                          : "border-card-border"
+                          : "border-gray-800"
                       }`}
                     >
-                      <div className="flex-1 text-xs text-muted truncate">
+                      <div className="flex-1 text-xs text-gray-400 truncate">
                         {chunk.slice(0, 70)}...
                       </div>
                       <span
                         className={`text-xs font-mono px-2 py-1 rounded ${
                           isRelevant
                             ? "bg-accent-blue/10 text-accent-blue"
-                            : "bg-navy-900 text-muted/50"
+                            : "bg-gray-800 text-gray-500"
                         }`}
                       >
                         {match.score.toFixed(2)}
@@ -293,7 +293,7 @@ export default function RAGDemo() {
               exit={{ opacity: 0 }}
               className="space-y-4"
             >
-              <p className="text-xs text-muted mb-2">
+              <p className="text-xs text-gray-400 mb-2">
                 Re-ranking by relevance score...
               </p>
               {RAG_SIMILARITY_SCORES.filter((m) => m.score > 0.7).map(
@@ -307,16 +307,16 @@ export default function RAGDemo() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.2 }}
-                      className="flex items-center gap-3 bg-navy-800 rounded-lg p-3 border border-accent-blue/30"
+                      className="flex items-center gap-3 bg-gray-900 rounded-lg p-3 border border-accent-blue/30"
                     >
-                      <span className="text-accent-amber font-bold text-sm w-6">
+                      <span className="text-accent-blue font-bold text-sm w-6">
                         #{i + 1}
                       </span>
                       <div className="flex-1">
                         <p className="text-xs text-accent-blue mb-1">
                           {doc.title}
                         </p>
-                        <p className="text-xs text-muted">{chunk}</p>
+                        <p className="text-xs text-gray-400">{chunk}</p>
                       </div>
                       <span className="text-xs font-mono text-accent-blue bg-accent-blue/10 px-2 py-1 rounded">
                         {match.score.toFixed(2)}
@@ -344,13 +344,13 @@ export default function RAGDemo() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
-                  className="text-sm text-foreground/90 leading-relaxed"
+                  className="text-sm text-white/90 leading-relaxed"
                 >
                   {RAG_SAMPLE_RESPONSE.answer}
                 </motion.p>
               </div>
               <div>
-                <p className="text-xs text-muted mb-2">Sources:</p>
+                <p className="text-xs text-gray-400 mb-2">Sources:</p>
                 <div className="flex flex-wrap gap-2">
                   {RAG_SAMPLE_RESPONSE.sources.map((src, i) => (
                     <motion.span
@@ -358,7 +358,7 @@ export default function RAGDemo() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.15 }}
-                      className="text-xs bg-navy-800 text-accent-blue px-2 py-1 rounded border border-accent-blue/20"
+                      className="text-xs bg-gray-900 text-accent-blue px-2 py-1 rounded border border-accent-blue/20"
                     >
                       [{i + 1}] {src}
                     </motion.span>
@@ -379,7 +379,7 @@ export default function RAGDemo() {
             {isLastStage ? (
               <button
                 onClick={reset}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-navy-800 hover:bg-navy-800/80 text-muted hover:text-foreground text-sm transition-colors border border-card-border"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-400 hover:text-white text-sm transition-colors border border-gray-800"
               >
                 <RotateCcw size={14} />
                 Run Again

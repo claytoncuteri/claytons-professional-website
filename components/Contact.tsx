@@ -37,20 +37,20 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-blue/[0.02] to-transparent" />
+    <section id="contact" className="py-32 lg:py-40 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-blue/[0.015] to-transparent" />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-[family-name:var(--font-heading)] text-center mb-4 tracking-[-0.02em]">
             {CONTACT.heading}
           </h2>
-          <p className="text-muted text-center mb-16 max-w-2xl mx-auto">
+          <p className="text-muted text-center mb-20 max-w-2xl mx-auto">
             {CONTACT.subheading}
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {/* Contact form */}
           <ScrollReveal direction="left">
             {submitted ? (
@@ -64,7 +64,7 @@ export default function Contact() {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="text-accent-blue text-sm hover:underline mt-2"
+                  className="text-accent-blue text-sm hover:underline mt-2 cursor-pointer"
                 >
                   Send another message
                 </button>
@@ -74,7 +74,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-muted mb-2"
+                    className="block text-xs font-medium text-muted mb-2 tracking-wide uppercase"
                   >
                     Name
                   </label>
@@ -86,7 +86,7 @@ export default function Contact() {
                     onChange={(e) =>
                       setFormState({ ...formState, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-lg bg-navy-800 border border-card-border text-foreground placeholder-muted/50 focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-black/[0.02] border border-black/[0.08] text-foreground placeholder-muted/40 focus:outline-none focus:border-accent-blue/40 transition-colors"
                     placeholder="Your name"
                     required
                   />
@@ -94,7 +94,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-muted mb-2"
+                    className="block text-xs font-medium text-muted mb-2 tracking-wide uppercase"
                   >
                     Email
                   </label>
@@ -106,7 +106,7 @@ export default function Contact() {
                     onChange={(e) =>
                       setFormState({ ...formState, email: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-lg bg-navy-800 border border-card-border text-foreground placeholder-muted/50 focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-black/[0.02] border border-black/[0.08] text-foreground placeholder-muted/40 focus:outline-none focus:border-accent-blue/40 transition-colors"
                     placeholder="your@email.com"
                     required
                   />
@@ -114,7 +114,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-muted mb-2"
+                    className="block text-xs font-medium text-muted mb-2 tracking-wide uppercase"
                   >
                     Message
                   </label>
@@ -126,7 +126,7 @@ export default function Contact() {
                     onChange={(e) =>
                       setFormState({ ...formState, message: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-lg bg-navy-800 border border-card-border text-foreground placeholder-muted/50 focus:outline-none focus:border-accent-blue transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-black/[0.02] border border-black/[0.08] text-foreground placeholder-muted/40 focus:outline-none focus:border-accent-blue/40 transition-colors resize-none"
                     placeholder="Tell me about your opportunity..."
                     required
                   />
@@ -134,7 +134,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-accent-blue hover:bg-accent-blue-dark text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full bg-accent-blue hover:bg-accent-blue-dark text-white px-6 py-3.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 hover:shadow-lg hover:shadow-accent-blue/20 cursor-pointer"
                 >
                   {submitting ? "Sending..." : "Send Message"}
                   <Send size={18} />
@@ -156,13 +156,13 @@ export default function Contact() {
                 href={CONTACT.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 glass-card p-4 hover:border-accent-blue/30 transition-colors group"
+                className="flex items-center gap-4 glass-card p-5 hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer"
               >
-                <div className="p-3 rounded-lg bg-accent-blue/10 group-hover:bg-accent-blue/20 transition-colors">
+                <div className="p-3 rounded-xl bg-accent-blue/[0.07] group-hover:bg-accent-blue/[0.12] transition-colors duration-300">
                   <Linkedin size={20} className="text-accent-blue" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted">LinkedIn</p>
+                  <p className="text-xs text-muted">LinkedIn</p>
                   <p className="text-foreground">Clayton Cuteri</p>
                 </div>
               </a>
@@ -171,13 +171,13 @@ export default function Contact() {
                 href={CONTACT.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 glass-card p-4 hover:border-accent-blue/30 transition-colors group"
+                className="flex items-center gap-4 glass-card p-5 hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer"
               >
-                <div className="p-3 rounded-lg bg-accent-blue/10 group-hover:bg-accent-blue/20 transition-colors">
+                <div className="p-3 rounded-xl bg-accent-blue/[0.07] group-hover:bg-accent-blue/[0.12] transition-colors duration-300">
                   <Github size={20} className="text-accent-blue" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted">GitHub</p>
+                  <p className="text-xs text-muted">GitHub</p>
                   <p className="text-foreground">claytoncuteri</p>
                 </div>
               </a>

@@ -15,9 +15,9 @@ interface Post {
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  AI: "text-accent-blue bg-accent-blue/10",
-  Engineering: "text-emerald-400 bg-emerald-400/10",
-  Leadership: "text-accent-amber bg-accent-amber/10",
+  AI: "text-accent-blue bg-accent-blue/[0.08]",
+  Engineering: "text-emerald-400 bg-emerald-400/[0.08]",
+  Leadership: "text-accent-amber bg-accent-amber/[0.08]",
 };
 
 export default function Writing() {
@@ -35,33 +35,33 @@ export default function Writing() {
   const placeholderCount = Math.max(0, 3 - posts.length);
 
   return (
-    <section id="writing" className="py-24">
+    <section id="writing" className="py-32 lg:py-40">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-[family-name:var(--font-heading)] text-center mb-4 tracking-[-0.02em]">
             Thoughts on{" "}
             <span className="gradient-text">
               AI, Engineering, and Leadership
             </span>
           </h2>
-          <p className="text-muted text-center mb-16 max-w-2xl mx-auto">
+          <p className="text-muted text-center mb-20 max-w-2xl mx-auto">
             {posts.length > 0
               ? "Perspectives from the intersection of engineering leadership and AI."
               : "Coming soon. In the meantime, connect with me on LinkedIn."}
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {posts.map((post, i) => (
-            <ScrollReveal key={post.id} delay={i * 0.1}>
+            <ScrollReveal key={post.id} delay={i * 0.08}>
               <Link
                 href={`/writing/${post.slug}`}
-                className="block glass-card p-6 hover:border-accent-blue/30 transition-all group h-full"
+                className="block glass-card p-6 hover:-translate-y-1 transition-all duration-300 group h-full cursor-pointer"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span
-                    className={`text-xs px-2 py-0.5 rounded-full ${
-                      CATEGORY_COLORS[post.category] || "text-muted bg-navy-800"
+                    className={`text-xs px-2.5 py-0.5 rounded-full ${
+                      CATEGORY_COLORS[post.category] || "text-muted bg-black/[0.04]"
                     }`}
                   >
                     {post.category}
@@ -74,13 +74,13 @@ export default function Writing() {
                     })}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold font-[family-name:var(--font-heading)] mb-3 group-hover:text-accent-blue transition-colors">
+                <h3 className="text-lg font-bold font-[family-name:var(--font-heading)] mb-3 group-hover:text-accent-blue transition-colors duration-300">
                   {post.title}
                 </h3>
                 <p className="text-sm text-muted mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
-                <span className="text-xs text-accent-blue flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="text-xs text-accent-blue flex items-center gap-1 group-hover:gap-2 transition-all duration-300">
                   Read more <ArrowRight size={12} />
                 </span>
               </Link>
@@ -90,8 +90,8 @@ export default function Writing() {
           {/* Placeholder skeletons for empty slots */}
           {!loading &&
             Array.from({ length: placeholderCount }).map((_, i) => (
-              <ScrollReveal key={`placeholder-${i}`} delay={(posts.length + i) * 0.1}>
-                <div className="glass-card p-6 opacity-40">
+              <ScrollReveal key={`placeholder-${i}`} delay={(posts.length + i) * 0.08}>
+                <div className="glass-card p-6 opacity-30">
                   <div className="flex items-center gap-2 mb-4">
                     <Clock size={16} className="text-muted" />
                     <span className="text-xs text-muted">Coming Soon</span>

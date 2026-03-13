@@ -15,7 +15,9 @@ import {
   FileText,
   Users,
   Clock,
+  GraduationCap,
 } from "lucide-react";
+import StudyGuidePanel from "@/components/StudyGuidePanel";
 
 interface Contact {
   id: string;
@@ -38,7 +40,7 @@ interface Post {
   published: boolean;
 }
 
-type Tab = "contacts" | "posts";
+type Tab = "contacts" | "posts" | "study";
 
 function LoginForm({ onLogin }: { onLogin: () => void }) {
   const [password, setPassword] = useState("");
@@ -62,9 +64,9 @@ function LoginForm({ onLogin }: { onLogin: () => void }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0F172A] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-white px-4">
       <div className="w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-center text-white mb-8 font-[family-name:var(--font-heading)]">
+        <h1 className="text-2xl font-bold text-center text-foreground mb-8 font-[family-name:var(--font-heading)]">
           Admin Dashboard
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -73,13 +75,13 @@ function LoginForm({ onLogin }: { onLogin: () => void }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter admin password"
-            className="w-full px-4 py-3 rounded-lg bg-[#1E293B] border border-[#334155] text-white placeholder-gray-500 focus:outline-none focus:border-[#3B82F6]"
+            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-foreground placeholder-gray-400 focus:outline-none focus:border-[#0071E3]"
             autoFocus
           />
           {error && <p className="text-red-400 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="w-full bg-[#0071E3] hover:bg-[#0077ED] text-white px-6 py-3 rounded-lg font-medium transition-colors"
           >
             Sign In
           </button>
@@ -130,8 +132,8 @@ function ContactsPanel() {
   return (
     <div className="flex h-[calc(100vh-120px)]">
       {/* Contact list */}
-      <div className="w-80 border-r border-[#334155] overflow-y-auto">
-        <div className="p-4 border-b border-[#334155]">
+      <div className="w-80 border-r border-gray-200 overflow-y-auto">
+        <div className="p-4 border-b border-gray-200">
           <p className="text-sm text-gray-400">
             {contacts.length} contacts {unreadCount > 0 && `(${unreadCount} unread)`}
           </p>
@@ -146,19 +148,19 @@ function ContactsPanel() {
                 setSelected(contact);
                 if (!contact.read) markRead(contact.id);
               }}
-              className={`w-full text-left p-4 border-b border-[#334155] hover:bg-[#1E293B] transition-colors ${
-                selected?.id === contact.id ? "bg-[#1E293B]" : ""
+              className={`w-full text-left p-4 border-b border-gray-200 hover:bg-gray-100 transition-colors ${
+                selected?.id === contact.id ? "bg-gray-50" : ""
               }`}
             >
               <div className="flex items-center gap-2 mb-1">
                 {contact.read ? (
                   <MailOpen size={14} className="text-gray-500" />
                 ) : (
-                  <Mail size={14} className="text-[#3B82F6]" />
+                  <Mail size={14} className="text-[#0071E3]" />
                 )}
                 <span
                   className={`text-sm font-medium ${
-                    contact.read ? "text-gray-400" : "text-white"
+                    contact.read ? "text-gray-400" : "text-foreground"
                   }`}
                 >
                   {contact.name}
@@ -182,10 +184,10 @@ function ContactsPanel() {
           <div className="p-8">
             <div className="flex items-start justify-between mb-6">
               <div>
-                <h3 className="text-xl font-bold text-white">{selected.name}</h3>
+                <h3 className="text-xl font-bold text-foreground">{selected.name}</h3>
                 <a
                   href={`mailto:${selected.email}`}
-                  className="text-[#3B82F6] text-sm hover:underline"
+                  className="text-[#0071E3] text-sm hover:underline"
                 >
                   {selected.email}
                 </a>
@@ -201,7 +203,7 @@ function ContactsPanel() {
                 <Trash2 size={18} />
               </button>
             </div>
-            <div className="bg-[#1E293B] rounded-lg p-6 border border-[#334155]">
+            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
               <p className="text-gray-300 whitespace-pre-wrap leading-relaxed">
                 {selected.message}
               </p>
@@ -263,13 +265,13 @@ function PostEditor({
   return (
     <div className="p-8 max-w-4xl">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-bold text-white">
+        <h3 className="text-lg font-bold text-foreground">
           {post ? "Edit Post" : "New Post"}
         </h3>
         <div className="flex gap-2">
           <button
             onClick={onCancel}
-            className="px-4 py-2 rounded-lg text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm"
+            className="px-4 py-2 rounded-lg text-gray-400 hover:text-foreground transition-colors flex items-center gap-2 text-sm"
           >
             <X size={14} />
             Cancel
@@ -277,7 +279,7 @@ function PostEditor({
           <button
             onClick={handleSave}
             disabled={!form.title || !form.slug || !form.content}
-            className="px-4 py-2 rounded-lg bg-[#3B82F6] hover:bg-[#2563EB] text-white transition-colors flex items-center gap-2 text-sm disabled:opacity-50"
+            className="px-4 py-2 rounded-lg bg-[#0071E3] hover:bg-[#0077ED] text-white transition-colors flex items-center gap-2 text-sm disabled:opacity-50"
           >
             <Save size={14} />
             Save
@@ -298,7 +300,7 @@ function PostEditor({
                 slug: post ? form.slug : autoSlug(e.target.value),
               });
             }}
-            className="w-full px-4 py-2.5 rounded-lg bg-[#1E293B] border border-[#334155] text-white focus:outline-none focus:border-[#3B82F6]"
+            className="w-full px-4 py-2.5 rounded-lg bg-gray-50 border border-gray-200 text-foreground focus:outline-none focus:border-[#0071E3]"
           />
         </div>
 
@@ -309,7 +311,7 @@ function PostEditor({
               type="text"
               value={form.slug}
               onChange={(e) => setForm({ ...form, slug: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-lg bg-[#1E293B] border border-[#334155] text-white focus:outline-none focus:border-[#3B82F6]"
+              className="w-full px-4 py-2.5 rounded-lg bg-gray-50 border border-gray-200 text-foreground focus:outline-none focus:border-[#0071E3]"
             />
           </div>
           <div>
@@ -317,7 +319,7 @@ function PostEditor({
             <select
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-lg bg-[#1E293B] border border-[#334155] text-white focus:outline-none focus:border-[#3B82F6]"
+              className="w-full px-4 py-2.5 rounded-lg bg-gray-50 border border-gray-200 text-foreground focus:outline-none focus:border-[#0071E3]"
             >
               <option value="AI">AI</option>
               <option value="Engineering">Engineering</option>
@@ -332,7 +334,7 @@ function PostEditor({
             value={form.excerpt}
             onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
             rows={2}
-            className="w-full px-4 py-2.5 rounded-lg bg-[#1E293B] border border-[#334155] text-white focus:outline-none focus:border-[#3B82F6] resize-none"
+            className="w-full px-4 py-2.5 rounded-lg bg-gray-50 border border-gray-200 text-foreground focus:outline-none focus:border-[#0071E3] resize-none"
             placeholder="Brief summary for card display..."
           />
         </div>
@@ -345,7 +347,7 @@ function PostEditor({
             value={form.content}
             onChange={(e) => setForm({ ...form, content: e.target.value })}
             rows={16}
-            className="w-full px-4 py-2.5 rounded-lg bg-[#1E293B] border border-[#334155] text-white focus:outline-none focus:border-[#3B82F6] resize-y font-mono text-sm"
+            className="w-full px-4 py-2.5 rounded-lg bg-gray-50 border border-gray-200 text-foreground focus:outline-none focus:border-[#0071E3] resize-y font-mono text-sm"
           />
         </div>
 
@@ -354,7 +356,7 @@ function PostEditor({
             type="checkbox"
             checked={form.published}
             onChange={(e) => setForm({ ...form, published: e.target.checked })}
-            className="rounded border-[#334155]"
+            className="rounded border-gray-200"
           />
           <span className="text-sm text-gray-400">Published</span>
         </label>
@@ -417,7 +419,7 @@ function PostsPanel() {
         <p className="text-sm text-gray-400">{posts.length} posts</p>
         <button
           onClick={() => setEditing("new")}
-          className="px-4 py-2 rounded-lg bg-[#3B82F6] hover:bg-[#2563EB] text-white transition-colors flex items-center gap-2 text-sm"
+          className="px-4 py-2 rounded-lg bg-[#0071E3] hover:bg-[#0077ED] text-white transition-colors flex items-center gap-2 text-sm"
         >
           <Plus size={14} />
           New Post
@@ -434,11 +436,11 @@ function PostsPanel() {
           {posts.map((post) => (
             <div
               key={post.id}
-              className="flex items-center gap-4 p-4 bg-[#1E293B] rounded-lg border border-[#334155]"
+              className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h4 className="text-white font-medium truncate">
+                  <h4 className="text-foreground font-medium truncate">
                     {post.title}
                   </h4>
                   <span
@@ -450,7 +452,7 @@ function PostsPanel() {
                   >
                     {post.published ? "Published" : "Draft"}
                   </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#3B82F6]/10 text-[#3B82F6]">
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#0071E3]/10 text-[#0071E3]">
                     {post.category}
                   </span>
                 </div>
@@ -462,14 +464,14 @@ function PostsPanel() {
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => togglePublished(post)}
-                  className="p-2 hover:bg-[#334155] rounded-lg text-gray-500 hover:text-white transition-colors"
+                  className="p-2 hover:bg-gray-200 rounded-lg text-gray-500 hover:text-foreground transition-colors"
                   title={post.published ? "Unpublish" : "Publish"}
                 >
                   {post.published ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
                 <button
                   onClick={() => setEditing(post)}
-                  className="p-2 hover:bg-[#334155] rounded-lg text-gray-500 hover:text-white transition-colors"
+                  className="p-2 hover:bg-gray-200 rounded-lg text-gray-500 hover:text-foreground transition-colors"
                   title="Edit"
                 >
                   <Edit3 size={16} />
@@ -511,7 +513,7 @@ export default function AdminDashboard() {
 
   if (checking) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0F172A]">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-gray-400">Loading...</div>
       </div>
     );
@@ -522,9 +524,9 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
+    <div className="min-h-screen bg-white text-foreground">
       {/* Header */}
-      <div className="border-b border-[#334155] px-6 py-4 flex items-center justify-between">
+      <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <h1 className="text-lg font-bold font-[family-name:var(--font-heading)]">
             Admin Dashboard
@@ -534,8 +536,8 @@ export default function AdminDashboard() {
               onClick={() => setTab("contacts")}
               className={`px-4 py-2 rounded-lg text-sm flex items-center gap-2 transition-colors ${
                 tab === "contacts"
-                  ? "bg-[#1E293B] text-white"
-                  : "text-gray-500 hover:text-white"
+                  ? "bg-gray-100 text-foreground"
+                  : "text-gray-500 hover:text-foreground"
               }`}
             >
               <Users size={16} />
@@ -545,25 +547,36 @@ export default function AdminDashboard() {
               onClick={() => setTab("posts")}
               className={`px-4 py-2 rounded-lg text-sm flex items-center gap-2 transition-colors ${
                 tab === "posts"
-                  ? "bg-[#1E293B] text-white"
-                  : "text-gray-500 hover:text-white"
+                  ? "bg-gray-100 text-foreground"
+                  : "text-gray-500 hover:text-foreground"
               }`}
             >
               <FileText size={16} />
               Blog Posts
+            </button>
+            <button
+              onClick={() => setTab("study")}
+              className={`px-4 py-2 rounded-lg text-sm flex items-center gap-2 transition-colors ${
+                tab === "study"
+                  ? "bg-gray-100 text-foreground"
+                  : "text-gray-500 hover:text-foreground"
+              }`}
+            >
+              <GraduationCap size={16} />
+              Study Guide
             </button>
           </div>
         </div>
         <div className="flex items-center gap-4">
           <a
             href="/"
-            className="text-sm text-gray-500 hover:text-white transition-colors"
+            className="text-sm text-gray-500 hover:text-foreground transition-colors"
           >
             View Site
           </a>
           <button
             onClick={handleLogout}
-            className="p-2 hover:bg-[#1E293B] rounded-lg text-gray-500 hover:text-white transition-colors"
+            className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-foreground transition-colors"
             title="Sign out"
           >
             <LogOut size={18} />
@@ -574,6 +587,7 @@ export default function AdminDashboard() {
       {/* Content */}
       {tab === "contacts" && <ContactsPanel />}
       {tab === "posts" && <PostsPanel />}
+      {tab === "study" && <StudyGuidePanel />}
     </div>
   );
 }

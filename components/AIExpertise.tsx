@@ -23,25 +23,24 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function AIExpertise() {
   return (
-    <section id="ai-expertise" className="py-24 relative">
-      {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-blue/[0.02] to-transparent" />
+    <section id="ai-expertise" className="py-32 lg:py-40 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-blue/[0.015] to-transparent" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-[family-name:var(--font-heading)] text-center mb-4 tracking-[-0.02em]">
             AI <span className="gradient-text">Expertise</span>
           </h2>
-          <div className="w-16 h-1 bg-accent-blue mx-auto mb-16 rounded-full" />
+          <div className="w-12 h-0.5 bg-accent-blue mx-auto mb-20 rounded-full opacity-50" />
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {AI_EXPERTISE.map((card, i) => {
             const Icon = iconMap[card.icon] || Brain;
             return (
-              <ScrollReveal key={card.title} delay={i * 0.1}>
-                <div className="glass-card p-6 h-full hover:border-accent-blue/30 hover:glow-blue transition-all duration-300 group">
-                  <div className="p-3 rounded-xl bg-accent-blue/10 w-fit mb-4 group-hover:bg-accent-blue/20 transition-colors">
+              <ScrollReveal key={card.title} delay={i * 0.08}>
+                <div className="glass-card p-6 h-full cursor-pointer hover:-translate-y-1 transition-all duration-300 group">
+                  <div className="p-3 rounded-xl bg-accent-blue/[0.07] w-fit mb-5 group-hover:bg-accent-blue/[0.12] transition-colors duration-300">
                     <Icon
                       size={24}
                       className="text-accent-blue"

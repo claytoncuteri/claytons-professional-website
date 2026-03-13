@@ -17,7 +17,7 @@ export default function ProjectsLayout({
   return (
     <div className="min-h-screen">
       {/* Back nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-900/95 backdrop-blur-md border-b border-card-border">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <Link
             href="/"

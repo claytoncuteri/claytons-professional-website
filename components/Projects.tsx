@@ -9,20 +9,20 @@ import Link from "next/link";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-blue/[0.02] to-transparent" />
+    <section id="projects" className="py-32 lg:py-40 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-blue/[0.015] to-transparent" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-[family-name:var(--font-heading)] text-center mb-4 tracking-[-0.02em]">
             Open Source <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-muted text-center mb-16 max-w-2xl mx-auto">
+          <p className="text-muted text-center mb-20 max-w-2xl mx-auto">
             Production-quality AI tools I have built and open-sourced.
           </p>
         </ScrollReveal>
 
-        <div className="space-y-16">
+        <div className="space-y-20">
           {/* rag-core */}
           <ScrollReveal>
             <div className="glass-card p-6 sm:p-8">
@@ -38,14 +38,14 @@ export default function Projects() {
                     href={PROJECTS[0].github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-navy-800 hover:bg-navy-800/80 text-foreground px-4 py-2 rounded-lg text-sm transition-colors"
+                    className="flex items-center gap-2 bg-black/[0.04] hover:bg-black/[0.08] text-foreground px-4 py-2 rounded-full text-sm transition-all duration-200 cursor-pointer"
                   >
                     <Github size={16} />
-                    View on GitHub
+                    GitHub
                   </a>
                   <Link
                     href={PROJECTS[0].caseStudyUrl}
-                    className="flex items-center gap-2 bg-accent-blue/10 hover:bg-accent-blue/20 text-accent-blue px-4 py-2 rounded-lg text-sm transition-colors"
+                    className="flex items-center gap-2 bg-accent-blue/[0.08] hover:bg-accent-blue/[0.15] text-accent-blue px-4 py-2 rounded-full text-sm transition-all duration-200 cursor-pointer"
                   >
                     Deep Dive
                     <ArrowRight size={14} />
@@ -56,8 +56,8 @@ export default function Projects() {
               <RAGDemo />
 
               {/* Code snippet */}
-              <div className="mt-6 bg-navy-950 rounded-lg p-4 overflow-x-auto">
-                <pre className="text-xs font-mono text-muted">
+              <div className="mt-6 bg-gray-950 rounded-xl p-4 overflow-x-auto">
+                <pre className="text-xs font-mono text-gray-400">
                   <code>{PROJECTS[0].codeSnippet}</code>
                 </pre>
               </div>
@@ -67,7 +67,7 @@ export default function Projects() {
                 {PROJECTS[0].features.map((f) => (
                   <span
                     key={f}
-                    className="text-xs px-3 py-1 rounded-full bg-accent-blue/10 text-accent-blue"
+                    className="text-xs px-3 py-1 rounded-full bg-black/[0.04] text-muted"
                   >
                     {f}
                   </span>
@@ -91,14 +91,14 @@ export default function Projects() {
                     href={PROJECTS[1].github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-navy-800 hover:bg-navy-800/80 text-foreground px-4 py-2 rounded-lg text-sm transition-colors"
+                    className="flex items-center gap-2 bg-black/[0.04] hover:bg-black/[0.08] text-foreground px-4 py-2 rounded-full text-sm transition-all duration-200 cursor-pointer"
                   >
                     <Github size={16} />
-                    View on GitHub
+                    GitHub
                   </a>
                   <Link
                     href={PROJECTS[1].caseStudyUrl}
-                    className="flex items-center gap-2 bg-accent-blue/10 hover:bg-accent-blue/20 text-accent-blue px-4 py-2 rounded-lg text-sm transition-colors"
+                    className="flex items-center gap-2 bg-accent-blue/[0.08] hover:bg-accent-blue/[0.15] text-accent-blue px-4 py-2 rounded-full text-sm transition-all duration-200 cursor-pointer"
                   >
                     Deep Dive
                     <ArrowRight size={14} />
@@ -109,8 +109,8 @@ export default function Projects() {
               <ModerationDemo />
 
               {/* Code snippet */}
-              <div className="mt-6 bg-navy-950 rounded-lg p-4 overflow-x-auto">
-                <pre className="text-xs font-mono text-muted">
+              <div className="mt-6 bg-gray-950 rounded-xl p-4 overflow-x-auto">
+                <pre className="text-xs font-mono text-gray-400">
                   <code>{PROJECTS[1].codeSnippet}</code>
                 </pre>
               </div>
@@ -120,7 +120,7 @@ export default function Projects() {
                 {PROJECTS[1].features.map((f) => (
                   <span
                     key={f}
-                    className="text-xs px-3 py-1 rounded-full bg-accent-blue/10 text-accent-blue"
+                    className="text-xs px-3 py-1 rounded-full bg-black/[0.04] text-muted"
                   >
                     {f}
                   </span>

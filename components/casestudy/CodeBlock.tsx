@@ -23,17 +23,17 @@ export default function CodeBlock({
   };
 
   return (
-    <div className="rounded-xl overflow-hidden border border-card-border">
+    <div className="rounded-xl overflow-hidden border border-gray-800">
       {title && (
-        <div className="flex items-center justify-between px-4 py-2 bg-navy-800 border-b border-card-border">
-          <span className="text-xs text-muted">{title}</span>
+        <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-800">
+          <span className="text-xs text-gray-400">{title}</span>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-muted/60 uppercase">
+            <span className="text-[10px] text-gray-500 uppercase">
               {language}
             </span>
             <button
               onClick={handleCopy}
-              className="text-muted hover:text-foreground transition-colors"
+              className="text-gray-400 hover:text-white transition-colors"
               aria-label="Copy code"
             >
               {copied ? <Check size={14} /> : <Copy size={14} />}
@@ -41,8 +41,8 @@ export default function CodeBlock({
           </div>
         </div>
       )}
-      <div className="bg-navy-950 p-4 overflow-x-auto">
-        <pre className="text-sm font-mono text-muted leading-relaxed">
+      <div className="bg-gray-950 p-4 overflow-x-auto">
+        <pre className="text-sm font-mono text-gray-400 leading-relaxed">
           <code>{code}</code>
         </pre>
       </div>

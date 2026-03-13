@@ -42,7 +42,7 @@ export default async function WritingPost({
           <div className="flex items-center gap-3 mb-4">
             <span
               className={`text-xs px-3 py-1 rounded-full ${
-                CATEGORY_COLORS[post.category] || "text-muted bg-navy-800"
+                CATEGORY_COLORS[post.category] || "text-muted bg-black/[0.04]"
               }`}
             >
               {post.category}
@@ -63,7 +63,7 @@ export default async function WritingPost({
           )}
         </header>
 
-        <div className="prose prose-invert prose-blue max-w-none">
+        <div className="prose prose-blue max-w-none">
           {post.content.split("\n\n").map((paragraph, i) => {
             if (paragraph.startsWith("## ")) {
               return (

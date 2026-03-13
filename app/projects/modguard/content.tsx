@@ -59,7 +59,7 @@ export default function ModguardContent() {
             <div className="glass-card p-6 border-l-4 border-l-accent-blue/40">
               <div className="flex items-start gap-4">
                 <div
-                  className={`flex-shrink-0 w-10 h-10 rounded-lg bg-navy-800 flex items-center justify-center text-sm font-bold ${layer.color}`}
+                  className={`flex-shrink-0 w-10 h-10 rounded-lg bg-black/[0.04] flex items-center justify-center text-sm font-bold ${layer.color}`}
                 >
                   L{i + 1}
                 </div>

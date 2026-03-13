@@ -34,8 +34,8 @@ function ToxicityBar({
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[10px] text-muted w-20 text-right">{label}</span>
-      <div className="flex-1 h-3 bg-navy-800 rounded-full overflow-hidden">
+      <span className="text-[10px] text-gray-400 w-20 text-right">{label}</span>
+      <div className="flex-1 h-3 bg-gray-900 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${value * 100}%` }}
@@ -43,7 +43,7 @@ function ToxicityBar({
           className={`h-full rounded-full ${color}`}
         />
       </div>
-      <span className="text-[10px] font-mono text-muted w-8">
+      <span className="text-[10px] font-mono text-gray-400 w-8">
         {value.toFixed(2)}
       </span>
     </div>
@@ -56,7 +56,7 @@ function SentimentGauge({ score, delay }: { score: number; delay: number }) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="relative w-32 h-16 overflow-hidden">
-        <div className="absolute inset-0 rounded-t-full border-4 border-navy-800 bg-gradient-to-r from-red-500/20 via-yellow-500/20 to-emerald-500/20" />
+        <div className="absolute inset-0 rounded-t-full border-4 border-gray-800 bg-gradient-to-r from-red-500/20 via-yellow-500/20 to-emerald-500/20" />
         <motion.div
           initial={{ rotate: -90 }}
           animate={{ rotate: rotation }}
@@ -66,7 +66,7 @@ function SentimentGauge({ score, delay }: { score: number; delay: number }) {
         />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent-blue" />
       </div>
-      <div className="flex justify-between w-32 text-[9px] text-muted">
+      <div className="flex justify-between w-32 text-[9px] text-gray-500">
         <span>Negative</span>
         <span>Neutral</span>
         <span>Positive</span>
@@ -132,7 +132,7 @@ export default function ModerationDemo() {
                 startModeration(example);
               }}
               disabled={stage !== "idle"}
-              className="text-xs px-3 py-1.5 rounded-full bg-navy-800 text-muted hover:text-foreground hover:bg-navy-800/80 transition-colors disabled:opacity-50"
+              className="text-xs px-3 py-1.5 rounded-full bg-black/[0.04] text-muted hover:text-foreground hover:bg-black/[0.08] transition-colors disabled:opacity-50"
             >
               {example.label}
             </button>
@@ -144,7 +144,7 @@ export default function ModerationDemo() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type or paste content to moderate..."
-            className="flex-1 px-4 py-2.5 rounded-lg bg-navy-800 border border-card-border text-sm text-foreground placeholder-muted/50 focus:outline-none focus:border-accent-blue transition-colors"
+            className="flex-1 px-4 py-2.5 rounded-lg bg-black/[0.02] border border-black/[0.08] text-sm text-foreground placeholder-muted/50 focus:outline-none focus:border-accent-blue transition-colors"
             disabled={stage !== "idle"}
           />
           <button
@@ -179,7 +179,7 @@ export default function ModerationDemo() {
                     ? "bg-accent-blue/20 text-accent-blue"
                     : isPast
                     ? "bg-accent-blue/10 text-accent-blue/60"
-                    : "bg-navy-800 text-muted/50"
+                    : "bg-black/[0.04] text-muted"
                 }`}
               >
                 {labels[s]}
@@ -189,8 +189,8 @@ export default function ModerationDemo() {
         </div>
       )}
 
-      {/* Demo viewport */}
-      <div className="bg-navy-950 rounded-xl p-6 min-h-[280px]">
+      {/* Demo viewport - dark terminal style */}
+      <div className="bg-gray-950 rounded-xl p-6 min-h-[280px] text-gray-200">
         <AnimatePresence mode="wait">
           {stage === "idle" && !result && (
             <motion.div
@@ -200,7 +200,7 @@ export default function ModerationDemo() {
               exit={{ opacity: 0 }}
               className="flex items-center justify-center h-[240px]"
             >
-              <p className="text-muted text-sm">
+              <p className="text-gray-400 text-sm">
                 Select an example or type text to moderate
               </p>
             </motion.div>
@@ -231,7 +231,7 @@ export default function ModerationDemo() {
                     ) : (
                       <XCircle size={14} className="text-red-400" />
                     )}
-                    <span className="text-muted">{check.name}</span>
+                    <span className="text-gray-400">{check.name}</span>
                     <span
                       className={`text-xs ml-auto ${
                         check.passed ? "text-emerald-400" : "text-red-400"
@@ -298,10 +298,10 @@ export default function ModerationDemo() {
                   transition={{ delay: 0.8 }}
                   className="text-center"
                 >
-                  <p className="text-sm font-medium">
+                  <p className="text-sm font-medium text-white">
                     {result.sentiment.label}
                   </p>
-                  <p className="text-xs text-muted">
+                  <p className="text-xs text-gray-400">
                     Score: {result.sentiment.score.toFixed(2)}
                   </p>
                 </motion.div>
@@ -329,7 +329,7 @@ export default function ModerationDemo() {
                     transition={{ delay: i * 0.2 }}
                     className="text-center"
                   >
-                    <div className="bg-navy-800 rounded-lg px-3 py-2 border border-card-border text-xs text-muted">
+                    <div className="bg-gray-900 rounded-lg px-3 py-2 border border-gray-800 text-xs text-gray-400">
                       {layer}
                     </div>
                   </motion.div>
@@ -339,7 +339,7 @@ export default function ModerationDemo() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8, type: "spring" }}
-                className="text-2xl"
+                className="text-2xl text-white"
               >
                 &#x2193;
               </motion.div>
@@ -391,7 +391,7 @@ export default function ModerationDemo() {
             {isLastStage ? (
               <button
                 onClick={reset}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-navy-800 hover:bg-navy-800/80 text-muted hover:text-foreground text-sm transition-colors border border-card-border"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-400 hover:text-white text-sm transition-colors border border-gray-800"
               >
                 <RotateCcw size={14} />
                 Try Another
