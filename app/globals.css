@@ -37,22 +37,28 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-/* Animated grid background */
+/* Animated grid background - static for performance, subtle pattern */
 .hero-grid {
   background-image:
     linear-gradient(rgba(0, 113, 227, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 113, 227, 0.04) 1px, transparent 1px);
   background-size: 80px 80px;
-  animation: gridMove 30s linear infinite;
 }
 
-@keyframes gridMove {
-  0% { background-position: 0 0; }
-  100% { background-position: 80px 80px; }
+/* CSS-based scroll reveal animations - no JS animation overhead */
+.scroll-reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.scroll-reveal-up { transform: translateY(20px); }
+.scroll-reveal-left { transform: translateX(-20px); }
+.scroll-reveal-right { transform: translateX(20px); }
+
+.scroll-revealed {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Card - Apple-inspired: clean white with subtle edges */
@@ -151,10 +157,10 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 
-  .hero-grid {
-    animation: none;
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

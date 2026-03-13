@@ -13,8 +13,8 @@ export default function Hero() {
       <div className="absolute inset-0 hero-grid" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
 
-      {/* Radial glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-blue/[0.03] rounded-full blur-[150px]" />
+      {/* Radial glow - uses radial-gradient instead of blur for GPU performance */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(0,113,227,0.03) 0%, transparent 70%)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
         <div className="flex flex-col lg:flex-row items-center gap-16">
