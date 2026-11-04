@@ -1,0 +1,49 @@
+/* Shared styles for the 1200x630 Open Graph cards. Palette and fonts match app/globals.css. */
+:root {
+  --bg: #FAFAFA;
+  --fg: #1D1D1F;
+  --muted: #6E6E73;   /* solid version of rgba(0,0,0,.45) on #FAFAFA, 5.0:1 */
+  --accent: #0071E3;
+  --line: #E3E3E8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "DM Sans", sans-serif;
+  position: relative;
+}
+/* Same faint grid as the site's hero (.hero-grid) */
+.grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 113, 227, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 113, 227, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.fade { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 45%, rgba(250,250,250,0) 0%, rgba(250,250,250,.85) 75%); }
+/* Safe zone: 50px in from every edge */
+.safe { position: absolute; left: 50px; top: 50px; right: 50px; bottom: 50px; display: flex; }
+h1, .heading { font-family: "Outfit", sans-serif; font-weight: 700; letter-spacing: -0.035em; }
+/* The single accent: the site's .gradient-text, darkened at the light end so the text keeps 4.5:1 */
+.accent {
+  background: linear-gradient(135deg, #0058B0 0%, #0071E3 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.domain {
+  position: absolute; right: 50px; bottom: 50px;
+  font-size: 24px; font-weight: 500; color: var(--muted); letter-spacing: 0.01em;
+}
+.eyebrow {
+  font-size: 24px; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+.chips { display: flex; gap: 12px; flex-wrap: wrap; }
+.chip {
+  font-size: 22px; font-weight: 500; color: var(--fg);
+  background: #FFFFFF; border: 1.5px solid var(--line); border-radius: 999px;
+  padding: 10px 20px;
+}
+.arrow { font-size: 22px; color: var(--muted); align-self: center; }
