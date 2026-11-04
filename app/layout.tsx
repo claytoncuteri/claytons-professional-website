@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { DEFAULT_OG_IMAGE, SITE_URL, X_HANDLE } from "@/lib/seo";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -15,6 +16,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Clayton Cuteri | VP of Engineering & AI | CTO | SaaS Leader",
   description:
     "Engineering and AI executive with 8+ years building AI-powered platforms. Experienced in leading cross-functional teams of 25+, scaling cloud infrastructure on AWS, and shipping AI products from zero to scale. Open to CTO and VP of Engineering roles.",
@@ -45,14 +47,17 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "Clayton Cuteri | VP of Engineering & AI | CTO",
     description:
-      "Engineering and AI executive with 8+ years building AI-powered platforms from zero to scale. Leading teams, shipping AI products, and delivering measurable business results.",
+      "Engineering and AI executive with 8+ years building AI-powered platforms from zero to scale. Open to CTO and VP of Engineering roles.",
     siteName: "Clayton Cuteri",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
+    creator: X_HANDLE,
     title: "Clayton Cuteri | VP of Engineering & AI | CTO",
     description:
-      "Engineering and AI executive building AI-powered platforms from zero to scale.",
+      "Engineering and AI executive with 8+ years building AI-powered platforms from zero to scale. Open to CTO and VP of Engineering roles.",
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,

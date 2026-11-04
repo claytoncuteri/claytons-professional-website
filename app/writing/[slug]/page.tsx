@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import type { Metadata } from "next";
 import { getPostBySlug, getPublishedPosts } from "@/lib/db";
+import { pageMetadata, socialDescription, socialTitle } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +12,28 @@ const CATEGORY_COLORS: Record<string, string> = {
   Engineering: "text-emerald-400 bg-emerald-400/10",
   Leadership: "text-accent-amber bg-accent-amber/10",
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  if (!post || !post.published) notFound();
+
+  // The image comes from ./opengraph-image.tsx (the post title on the brand card).
+  return pageMetadata({
+    title: `${post.title} | Clayton Cuteri`,
+    socialTitle: socialTitle(post.title),
+    description: post.excerpt,
+    socialDescription: socialDescription(post.excerpt),
+    path: `/writing/${post.slug}`,
+    type: "article",
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt,
+  });
+}
 
 export default async function WritingPost({
   params,
